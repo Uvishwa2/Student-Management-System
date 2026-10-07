@@ -1,23 +1,31 @@
 students = []
 
 
+class Student:
+    def __init__(self, name, roll_no, course):
+        self.name = name
+        self.roll_no = roll_no
+        self.course = course
+
+
 def add_student():
-    name = input("Enter student name: ").strip()
-    roll_no = input("Enter roll number: ").strip()
-    course = input("Enter course: ").strip()
+    try:
+        name = input("Enter student name: ").strip()
+        roll_no = input("Enter roll number: ").strip()
+        course = input("Enter course: ").strip()
+    except Exception:
+        print("Invalid input. Please try again.")
+        return
 
     if not name or not roll_no or not course:
         print("All fields are required.")
         return
-    student = {
-        "name": name,
-        "roll_no": roll_no,
-        "course": course
-    }
 
+    student = Student(name, roll_no, course)
     students.append(student)
-    print("Student added successfully.")
 
+    print("Student added successfully.")
+    
 
 def view_students():
     if not students:
@@ -25,29 +33,29 @@ def view_students():
         return
 
     for student in students:
-        print("Name:", student["name"])
-        print("Roll No:", student["roll_no"])
-        print("Course:", student["course"])
+        print("Name:", student.name)
+        print("Roll No:", student.roll_no)
+        print("Course:", student.course)
         print("--------------------")
 
 def update_student():
     roll_no = input("Enter roll number to update: ")
 
     for student in students:
-        if student["roll_no"] == roll_no:
-            student["name"] = input("Enter new student name: ")
-            student["course"] = input("Enter new course: ")
+        if student.roll_no == roll_no:
+            student.name = input("Enter new student name: ").strip()
+            student.course = input("Enter new course: ").strip()
 
             print("Student updated successfully.")
             return
 
-    print("Student not found.")        
+    print("Student not found.")    
 
 def delete_student():
     roll_no = input("Enter roll number to delete: ")
 
     for student in students:
-        if student["roll_no"] == roll_no:
+        if student.roll_no == roll_no:
             students.remove(student)
             print("Student deleted successfully.")
             return
@@ -58,11 +66,11 @@ def search_student():
     roll_no = input("Enter roll number to search: ")
 
     for student in students:
-        if student["roll_no"] == roll_no:
+        if student.roll_no == roll_no:
             print("Student found.")
-            print("Name:", student["name"])
-            print("Roll No:", student["roll_no"])
-            print("Course:", student["course"])
+            print("Name:", student.name)
+            print("Roll No:", student.roll_no)
+            print("Course:", student.course)
             return
 
     print("Student not found.")
