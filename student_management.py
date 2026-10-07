@@ -27,6 +27,19 @@ def view_students():
         print("Course:", student["course"])
         print("--------------------")
 
+def update_student():
+    roll_no = input("Enter roll number to update: ")
+
+    for student in students:
+        if student["roll_no"] == roll_no:
+            student["name"] = input("Enter new student name: ")
+            student["course"] = input("Enter new course: ")
+
+            print("Student updated successfully.")
+            return
+
+    print("Student not found.")        
+
 
 def search_student():
     roll_no = input("Enter roll number to search: ")
@@ -47,8 +60,9 @@ def main():
         print("\nStudent Management System")
         print("1. Add Student")
         print("2. View Students")
-        print("3. Search Student")
-        print("4. Exit")
+        print("3. Update Student")
+        print("4. Search Student")
+        print("5. Exit")
 
         choice = input("Enter your choice: ")
 
@@ -57,8 +71,10 @@ def main():
         elif choice == "2":
             view_students()
         elif choice == "3":
-            search_student()
+            update_student()
         elif choice == "4":
+            search_student()
+        elif choice == "5":
             print("Thank you.")
             break
         else:
