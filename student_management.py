@@ -40,6 +40,16 @@ def update_student():
 
     print("Student not found.")        
 
+def delete_student():
+    roll_no = input("Enter roll number to delete: ")
+
+    for student in students:
+        if student["roll_no"] == roll_no:
+            students.remove(student)
+            print("Student deleted successfully.")
+            return
+
+    print("Student not found.")
 
 def search_student():
     roll_no = input("Enter roll number to search: ")
@@ -61,8 +71,9 @@ def main():
         print("1. Add Student")
         print("2. View Students")
         print("3. Update Student")
-        print("4. Search Student")
-        print("5. Exit")
+        print("4. Delete Student")
+        print("5. Search Student")
+        print("6. Exit")
 
         choice = input("Enter your choice: ")
 
@@ -73,8 +84,10 @@ def main():
         elif choice == "3":
             update_student()
         elif choice == "4":
-            search_student()
+            delete_student()
         elif choice == "5":
+            search_student()
+        elif choice == "6":
             print("Thank you.")
             break
         else:
