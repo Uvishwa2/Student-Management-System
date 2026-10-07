@@ -2,10 +2,13 @@ students = []
 
 
 def add_student():
-    name = input("Enter student name: ")
-    roll_no = input("Enter roll number: ")
-    course = input("Enter course: ")
+    name = input("Enter student name: ").strip()
+    roll_no = input("Enter roll number: ").strip()
+    course = input("Enter course: ").strip()
 
+    if not name or not roll_no or not course:
+        print("All fields are required.")
+        return
     student = {
         "name": name,
         "roll_no": roll_no,
@@ -87,7 +90,7 @@ def main():
             delete_student()
         elif choice == "5":
             search_student()
-        elif choice == "6":
+            
             print("Thank you.")
             break
         else:
